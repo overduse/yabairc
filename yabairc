@@ -2,7 +2,8 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-yabai -m config layout                       float
+# float or bsp
+yabai -m config layout                       bsp
 # 默认拆分规则 first_child second_child
 yabai -m config window_placement             first_child
 # 窗口间距设置
@@ -10,7 +11,7 @@ yabai -m config top_padding                  8
 yabai -m config bottom_padding               8
 yabai -m config left_padding                 8
 yabai -m config right_padding                8
-yabai -m config window_gap                   6
+yabai -m config window_gap                   16
 
 yabai -m config auto_balance                 off
 
@@ -46,6 +47,7 @@ yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^About This Mac$" manage=off
 yabai -m rule --add app="^WeChat$" manage=off
 yabai -m rule --add app="^iTerm$" manage=off
+yabai -m rule --add app="^ChatGPT$" manage=off
 yabai -m rule --add app="^QQ$" manage=off
 
 
