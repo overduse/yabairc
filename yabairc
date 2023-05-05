@@ -1,47 +1,62 @@
 #!/usr/bin/env sh
+
+set -x
+
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-# float or bsp
-yabai -m config layout                       bsp
-# 默认拆分规则 first_child second_child
-yabai -m config window_placement             second_child
-# 窗口间距设置
-yabai -m config top_padding                  8
-yabai -m config bottom_padding               8
-yabai -m config left_padding                 8
-yabai -m config right_padding                8
-yabai -m config window_gap                   16
+yabai -m config layout bsp
+yabai -m config --space 2 layout float
 
-yabai -m config auto_balance                 off
+yabai -m config window_placement second_child
 
-yabai -m config split_ratio                 0.50
+# Set all padding and gaps to 8pt
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_pading 8
+yabai -m config right_padding 8
+yabai -m config window_gap 8
 
-yabai -m config mouse_modifier               fn
+yabai -m config --space 2 window_gap 2
 
-yabai -m config mouse_action1                move
+# split ratios
+yabai -m config auto_balance off
+yabai -m config split_ratio 0.5
 
-yabai -m config mouse_action2                resize
+# mouse support
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
 
-yabai -m config focus_follows_mouse          autofocus
+yabai -m config focus_follows_mouse autofocus
+yabai -m config mouse_follows_focus on
 
-yabai -m config mouse_follows_focus          on
+yabai -m config window_border on
+yabai -m config window_border_placement inset
+yabai -m config window_border_blur off
+yabai -m config window_border_hidpi off
+yabai -m config window_border_width 2
+yabai -m config window_border_radius 8
 
-yabai -m config window_topmost               on
+yabai -m config active_window_border_color 0x817aa2f7
+yabai -m config normal_window_border_color 0x72565f89
 
-yabai -m config window_shadow                float
 
-yabai -m config window_opacity               on
+# window modifications
+## window shadow
+yabai -m config window_shadow float
 
-yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.9
-yabai -m config window_opacity_duration      0.0
+## opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+yabai -m config config window_opacity_duration 96
 
-# yabai -m config external_bar main:20:0
-# 在所有显示器上的每个空间顶部添加 0 填充 底部添加 0 填充
-yabai -m config external_bar all:0:5
+# external bar
+yabai -m config external_bar main:0:20
 
-# ================================ rule ================================
+# rule
+
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^About This Mac$" manage=off
@@ -49,7 +64,6 @@ yabai -m rule --add app="^WeChat$" manage=off
 yabai -m rule --add app="^iTerm$" manage=off
 yabai -m rule --add app="^ChatGPT$" manage=off
 yabai -m rule --add app="^QQ$" manage=off
-
+yabai -m rule --add app="^Alfred Preferences$" manage=off
 
 echo "yabai configuration loaded.."
-
