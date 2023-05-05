@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
+#
 if [ ${1:-} = "1" ]; then
   moveCurrentWindow="yes"
 fi
@@ -15,4 +15,3 @@ then
 fi
 
 yabai -m space --focus ${spaceIndex}
-~/.config/yabai/change-random-wallpaper.sh

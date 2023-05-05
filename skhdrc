@@ -59,40 +59,48 @@ ctrl + alt + cmd - down : yabai -m window --resize bottom:0:50; yabai -m window 
 ctrl + alt + cmd - up : yabai -m window --resize top:0:-50; yabai -m window --resize bottom:0:-50
 ctrl + alt + cmd - right : yabai -m window --resize right:50:0; yabai -m window --resize left:50:0
 
-# # create space
-# alt - c : ~/.config/yabai/config/create_new_space.sh 1
-# # destroy sapce
-# # force refresh space bar
-# alt - w : ~/.config/yabai/config/destroy_space.sh
+# create space
+alt - c : ~/.config/yabai/create_new_space.sh 1
+# destroy space
+# force refresh space bar
+alt - w : ~/.config/yabai/destroy_space.sh
 
-shift + cmd - n : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                  yabai -m window --space "${index}" && \
-                  yabai -m space --focus "${index}"
-
-cmd + alt - n : yabai -m space --create && \
-                index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                yabai -m space --focus "${index}"
-
-cmd + alt - w : yabai -m space --destroy
-
-# fast focus desktop(切换空间焦点)
+# fast focus desktop
 # 0x32 equals to `
 alt - 0x32 : ~/.config/yabai/send_to_next_display.sh
 alt - tab : yabai -m space --focus recent
-alt - n : yabai -m space --focus prev || yabai -m space --focus last
-alt - m : yabai -m space --focus next || yabai -m space --focus first
+alt - p : yabai -m space --focus prev || yabai -m space --focus last
+alt - n : yabai -m space --focus next || yabai -m space --focus first
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
 alt - 3 : yabai -m space --focus 3
 alt - 4 : yabai -m space --focus 4
 alt - 5 : yabai -m space --focus 5
 alt - 6 : yabai -m space --focus 6
-alt - 7 : yabai -m space --focus 7
+alt - 7 : yabai -m space --focus 7 
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0 : yabai -m space --focus 10
 
+# send current window to another space then focus
+alt + cmd - tab : yabai -m window --space recent; yabai -m space --focus recent
+alt + cmd - p : (yabai -m window --space prev && yabai -m space --focus prev) \
+	|| (yabai -m window --space last && yabai -m space --focus last)
+alt + cmd - n : (yabai -m window --space next && yabai -m space --focus next) \
+	|| (yabai -m window --space first && yabai -m space --focus first)
+
+# 0x32 equals to `
+cmd + alt - 0x32 : ~/.config/yabai/send_to_next_display.sh move_window
+cmd + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
+cmd + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
+cmd + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
+cmd + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
+cmd + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
+cmd + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
+cmd + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
+cmd + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
+cmd + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
+cmd + alt - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 
 # reboot Yabai
@@ -114,5 +122,8 @@ ctrl + alt - k : yabai -m window --insert north
 
 
 #float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;yabai -m window --grid 4:4:1:1:2:2
+alt - t : ~/.config/yabai/toggle-window-floating-tiling.sh \
+          && ~/.config/yabai/change-window-border-color-when-window-focused.sh
 
+ctrl + alt - c : ~/.config/yabai/toggle-window-floating-tiling.sh forceCenter \
+          && ~/.config/yabai/change-window-border-color-when-window-focused.sh

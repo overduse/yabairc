@@ -2,11 +2,23 @@
 
 set -x
 
+# initialization
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
+source ~/.config/yabai/initialization.sh
+
+# Signals
+# Initialize the temp folder when adding or removing displays
+yabai -m signal --add event=display_added action="~/.config/yabai/initialization.sh"
+yabai -m signal --add event=display_removed action="~/.config/yabai/initialization.sh"
+yabai -m signal --add event=window_focused action="~/.config/yabai/change-window-border-color-when-window-focused.sh"
+yabai -m signal --add event=window_destroyed action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
+yabai -m signal --add event=application_hidden action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
+yabai -m signal --add event=window_minimized action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
+
 yabai -m config layout bsp
-yabai -m config --space 2 layout float
+# yabai -m config --space 2 layout float
 
 yabai -m config window_placement second_child
 
@@ -49,11 +61,11 @@ yabai -m config window_shadow float
 ## opacity
 yabai -m config window_opacity on
 yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 0.9
-yabai -m config config window_opacity_duration 96
+yabai -m config normal_window_opacity 0.85
+yabai -m config window_opacity_duration 96
 
 # external bar
-yabai -m config external_bar main:0:20
+yabai -m config external_bar all:0:20
 
 # rule
 
