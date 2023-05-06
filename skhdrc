@@ -120,6 +120,10 @@ ctrl + alt - l : yabai -m window --insert east
 ctrl + alt - j : yabai -m window --insert south
 ctrl + alt - k : yabai -m window --insert north
 
+# x-axis mirror
+alt - x : yabai -m space --mirror x-axis
+# y-axis mirror
+alt - y : yabai -m space --mirror y-axis
 
 #float / unfloat window and center on screen
 alt - t : ~/.config/yabai/toggle-window-floating-tiling.sh \
