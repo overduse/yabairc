@@ -7,14 +7,11 @@ output_device() {
     MacBook*)
       output="🔈 MAC"
       ;;
-    "MOPIP'Airpods Pro")
+    "Car_pe'Airpods Pro")
       output="🎧 pro"
       ;;
-    "MOPIP'AirPods")
+    "Car_pe'AirPods")
       output="🎧 pods"
-      ;;
-    "OPPO Enco Free2")
-      output="🎧 OPPO"
       ;;
   esac
   echo "$output"
@@ -23,11 +20,11 @@ output_device() {
 volume() {
   volume=$(osascript -e 'output volume of (get volume settings)')
   [[ $volume = "0" ]] && volume="mute"
-  echo " ${volume}"
+  echo "volume: ${volume}"
 }
 
 info() {
-  echo "Mopip77"
+  echo "Car_pe"
 }
 
 ip() {
@@ -38,9 +35,9 @@ shurufa() {
   curPath=$(cd `dirname $0`; pwd)
   layout=$(${curPath}/get_current_shurufa)
   if [[ $layout == *"ABC"* ]];then
-     echo "🇺🇸 "
+     echo " "
   else
-     echo "🇨🇳 "
+     echo " "
   fi
 }
 

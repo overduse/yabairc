@@ -3,9 +3,6 @@
 echo "==================== next =================="
 
 set -x
-
-# Toggle a window between floating and tiling.
-# Only works when the workspace layout is bsp, i.e., the windows in it are tiled.
 mouseSpaceIndex=$(yabai -m query --spaces --space mouse | jq -r .index)
 windowSpaceIndex=$(yabai -m query --windows --window | jq -r .space)
 

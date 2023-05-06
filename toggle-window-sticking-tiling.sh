@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
 
-# Toggle a window between floating and tiling.
-# Only works when the workspace layout is bsp, i.e., the windows in it are tiled.
-
 spaceType=$(yabai -m query --spaces --space | jq .type)
 if [ $spaceType = '"bsp"' ]; then
 
   read -r id sticky <<< $(echo $(yabai -m query --windows --window | jq '.id, ."is-sticky"'))
   tmpfile=/tmp/yabai-tiling-floating-toggle/sticky-$id
-
-  # border=$(yabai -m config window_border)
-
-  # If the window is floating, record its position and size into a temp file and toggle it to be tiling.
   if [[ $sticky = true ]]
   then
     [ -e $tmpfile ] && rm $tmpfile
@@ -35,5 +28,4 @@ if [ $spaceType = '"bsp"' ]; then
       yabai -m window --resize abs:$((w*3/5)):$((h*3/5))
     fi
   fi
-
 fi

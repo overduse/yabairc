@@ -6,6 +6,7 @@
 arr=(
 "`volume`"
 "`ip`"
+# "`id`"
 )
 
 res=""
