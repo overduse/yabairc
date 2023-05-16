@@ -14,4 +14,4 @@ then
   yabai -m window --space ${spaceIndex}
 fi
 
-yabai -m space --focus ${spaceIndex}
+# yabai -m space --focus ${spaceIndex}

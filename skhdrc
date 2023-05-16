@@ -52,15 +52,16 @@ ctrl + alt - 3  : yabai -m display --focus 3
 ctrl + alt - 0 : yabai -m space --balance   # balance the size of windows
 alt - r : yabai -m space --rotate 90        # rotate
 
-
 # resize windows
 ctrl + alt + cmd - left : yabai -m window --resize left:-50:0; yabai -m window --resize right:-50:0
 ctrl + alt + cmd - down : yabai -m window --resize bottom:0:50; yabai -m window --resize top:0:50
 ctrl + alt + cmd - up : yabai -m window --resize top:0:-50; yabai -m window --resize bottom:0:-50
 ctrl + alt + cmd - right : yabai -m window --resize right:50:0; yabai -m window --resize left:50:0
 
+
 # create space
-alt - c : ~/.config/yabai/create_new_space.sh 1
+# alt - c : ~/.config/yabai/create_new_space.sh 1
+alt - c : ~/.config/yabai/create_new_space.sh
 # destroy space
 # force refresh space bar
 alt - w : ~/.config/yabai/destroy_space.sh
@@ -104,7 +105,7 @@ cmd + alt - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 
 # reboot Yabai
-cmd + alt - r : /usr/bin/env osascript <<< "display notification \"reboot Yabai\" with title \"Yabai\""; launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# cmd + alt - r : /usr/bin/env osascript <<< "display notification \"reboot Yabai\" with title \"Yabai\""; launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 
 # send window to monitor and follow focus
@@ -131,3 +132,9 @@ alt - t : ~/.config/yabai/toggle-window-floating-tiling.sh \
 
 ctrl + alt - c : ~/.config/yabai/toggle-window-floating-tiling.sh forceCenter \
           && ~/.config/yabai/change-window-border-color-when-window-focused.sh
+
+# Stack
+# alt - s step into stack
+# alt - a step into next stack
+alt - s : ${HOME}/.config/yabai/toggle-window-bsp-stack.sh
+alt - a : yabai -m window --focus stack.next || yabai -m window --focus stack.first

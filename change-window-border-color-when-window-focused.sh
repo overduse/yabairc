@@ -9,9 +9,9 @@ if [[ "AXSystemDialog" = "$subrole" ]]; then
 fi
 
 if [[ "true" = $floating ]]; then
-  yabai -m config active_window_border_color 0x817aa2f7
+  yabai -m config active_window_border_color 0x967aa2f7
 elif [[ "true" = $sticky ]]; then
-  yabai -m config active_window_border_color 0x72565f89
+  yabai -m config active_window_border_color 0x967aa2f7
 else
-  yabai -m config active_window_border_color 0x72565f89
+  yabai -m config active_window_border_color 0x967aa2f7
 fi
