@@ -1,81 +1,43 @@
 #!/usr/bin/env sh
 
-set -x
-
-# initialization
-sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
-source ~/.config/yabai/initialization.sh
-
-# Signals
-# Initialize the temp folder when adding or removing displays
-yabai -m signal --add event=display_added action="~/.config/yabai/initialization.sh"
-yabai -m signal --add event=display_removed action="~/.config/yabai/initialization.sh"
-yabai -m signal --add event=window_focused action="~/.config/yabai/change-window-border-color-when-window-focused.sh"
-yabai -m signal --add event=window_destroyed action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
-yabai -m signal --add event=application_hidden action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
-yabai -m signal --add event=window_minimized action="~/.config/yabai/auto-focus-to-new-one-when-window-destroyed.sh 2> /dev/null"
-
-yabai -m config layout bsp
-
-yabai -m config window_placement second_child
-
-# Set all padding and gaps to 8pt
-yabai -m config top_padding 8
-yabai -m config bottom_padding 8
-yabai -m config left_padding 8
-yabai -m config right_padding 8
-yabai -m config window_gap 4
-
-# yabai -m config --space 2 window_gap 2
-
-# split ratios
-yabai -m config auto_balance off
-yabai -m config split_ratio 0.5
-
-# mouse support
-yabai -m config mouse_modifier fn
-yabai -m config mouse_action1 move
-yabai -m config mouse_action2 resize
-
-yabai -m config focus_follows_mouse autofocus
-yabai -m config mouse_follows_focus on
-
-yabai -m config window_border on
-yabai -m config window_border_placement inset
-yabai -m config window_border_blur off
-yabai -m config window_border_hidpi off
-yabai -m config window_border_width 3
-yabai -m config window_border_radius 6
-
-yabai -m config active_window_border_color 0x967aa2f7
-yabai -m config normal_window_border_color 0x81565f89
-yabai -m config insert_window_border_color 0xfff7768e
+# global settings
+yabai -m config                                 \
+    external_bar                 off:40:0       \
+    menubar_opacity              1.0            \
+    mouse_follows_focus          on             \
+    focus_follows_mouse          autoraise      \
+    display_arrangement_order    default        \
+    window_origin_display        default        \
+    window_placement             second_child   \
+    window_insertion_point       focused        \
+    window_zoom_persist          on             \
+    window_shadow                on             \
+    window_animation_duration    0.0            \
+    window_animation_easing      ease_out_circ  \
+    window_opacity_duration      0.0            \
+    active_window_opacity        1.0            \
+    normal_window_opacity        0.90           \
+    window_opacity               on             \
+    insert_feedback_color        0xffd75f5f     \
+    split_ratio                  0.50           \
+    split_type                   auto           \
+    auto_balance                 off            \
+    top_padding                  06             \
+    bottom_padding               12             \
+    left_padding                 12             \
+    right_padding                12             \
+    window_gap                   06             \
+    layout                       bsp            \
+    mouse_modifier               fn             \
+    mouse_action1                move           \
+    mouse_action2                resize         \
+    mouse_drop_action            swap
 
 
-# window modifications
-## window shadow
-yabai -m config window_shadow float
-
-## opacity
-yabai -m config window_opacity on
-yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 1.0
-
-# external bar
-yabai -m config external_bar all:0:24
-
-# rule
-yabai -m rule --add app="^System Settings$" manage=off
-yabai -m rule --add app="^Finder$" manage=off
-yabai -m rule --add app="^Reminders$" manage=off
-yabai -m rule --add app="^About This Mac$" manage=off
-yabai -m rule --add app="^WeChat$" manage=off
-yabai -m rule --add app="^iTerm$" manage=off
-yabai -m rule --add app="^QQ$" manage=off
-yabai -m rule --add app="^Alfred Preferences$" manage=off
-yabai -m rule --add app="^微信$" manage=off
-yabai -m rule --add app="^访达$" manage=off
+# yabai -m config --space 1 layout float
+borders active_color=0xffbb9af7 inactive_color=0xaf7aa2f7 width=5.0 &
 
 echo "yabai configuration loaded.."
