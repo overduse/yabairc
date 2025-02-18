@@ -28,9 +28,9 @@ You can follow this [guidance](https://github.com/koekeishiya/yabai/wiki/Disabli
 
 mkdir -p ~/.config/
 # clone repo via git
-git clone https://github.com/overduse/yabairc ~/.config/
+git clone https://github.com/overduse/yabairc.git ~/.config/
 # or clone repo via gh
-gh repo clone overduse/yabairc ~/.config/
+gh repo clone overduse/yabairc.git ~/.config/
 
 # rename dir: yabairc -> dir: yabai under ~/.config/
 mv ~/.config/yabairc ~/.config/yabai/
@@ -43,9 +43,9 @@ Put my [skhd configure](https://github.com/overduse/skhdrc) under the path `~/.c
 
 ```bash
 # clone repo via git
-git clone https://github.com/overduse/skhdrc ~/.config/
+git clone https://github.com/overduse/skhdrc.git ~/.config/
 # or clone repo via gh
-gh repo clone overduse/yabairc ~/.config/
+gh repo clone overduse/yabairc.git ~/.config/
 
 # rename dir: skhdrc -> dir: skhd under ~/.config/
 mv ~/.config/skhdrc ~/.config/skhd/
